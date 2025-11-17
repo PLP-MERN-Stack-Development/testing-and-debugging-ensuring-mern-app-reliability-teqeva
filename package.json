@@ -1,0 +1,23 @@
+{
+  "name": "mern-test",
+  "version": "1.0.0",
+  "description": "This assignment focuses on implementing comprehensive testing strategies for a MERN stack application, including unit testing, integration testing, and end-to-end testing, along with debugging techniques.",
+  "main": "jest.config.js",
+  "scripts": {
+    "install-all": "cd client && npm install && cd ../server && npm install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PLP-MERN-Stack-Development/testing-and-debugging-ensuring-mern-app-reliability-Hesbonrandy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PLP-MERN-Stack-Development/testing-and-debugging-ensuring-mern-app-reliability-Hesbonrandy/issues"
+  },
+  "homepage": "https://github.com/PLP-MERN-Stack-Development/testing-and-debugging-ensuring-mern-app-reliability-Hesbonrandy#readme",
+  "devDependencies": {
+    "cypress": "^15.6.0"
+  }
+}

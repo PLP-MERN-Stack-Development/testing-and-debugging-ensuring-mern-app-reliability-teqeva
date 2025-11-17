@@ -1,87 +1,99 @@
-# Testing and Debugging MERN Applications
+# mern-test — Testing & Debugging MERN Applications
 
-This assignment focuses on implementing comprehensive testing strategies for a MERN stack application, including unit testing, integration testing, and end-to-end testing, along with debugging techniques.
+A focused assignment repository for implementing comprehensive testing strategies for a MERN stack application (MongoDB, Express, React, Node), including unit, integration, and end-to-end tests, plus debugging techniques and coverage reporting.
 
-## Assignment Overview
+## Quick summary
+- Server coverage HTML: `server/coverage/lcov-report/index.html`
+- Goal: unit, integration, and E2E tests with ≥70% coverage for unit tests
+- Tools used: Jest, React Testing Library, Supertest, Cypress or Playwright, mongodb-memory-server
 
-You will:
-1. Set up testing environments for both client and server
-2. Write unit tests for React components and server functions
-3. Implement integration tests for API endpoints
-4. Create end-to-end tests for critical user flows
-5. Apply debugging techniques for common MERN stack issues
-
-## Project Structure
-
-```
-mern-testing/
-├── client/                 # React front-end
-│   ├── src/                # React source code
-│   │   ├── components/     # React components
-│   │   ├── tests/          # Client-side tests
-│   │   │   ├── unit/       # Unit tests
-│   │   │   └── integration/ # Integration tests
-│   │   └── App.jsx         # Main application component
-│   └── cypress/            # End-to-end tests
-├── server/                 # Express.js back-end
-│   ├── src/                # Server source code
-│   │   ├── controllers/    # Route controllers
-│   │   ├── models/         # Mongoose models
-│   │   ├── routes/         # API routes
-│   │   └── middleware/     # Custom middleware
-│   └── tests/              # Server-side tests
-│       ├── unit/           # Unit tests
-│       └── integration/    # Integration tests
-├── jest.config.js          # Jest configuration
-└── package.json            # Project dependencies
-```
-
-## Getting Started
-
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week6-Assignment.md` file
-4. Explore the starter code and existing tests
-5. Complete the tasks outlined in the assignment
-
-## Files Included
-
-- `Week6-Assignment.md`: Detailed assignment instructions
-- Starter code for a MERN application with basic test setup:
-  - Sample React components with test files
-  - Express routes with test files
-  - Jest and testing library configurations
-  - Example tests for reference
-
-## Requirements
-
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
+## Prerequisites
+- Node.js v18+
 - npm or yarn
-- Basic understanding of testing concepts
+- MongoDB (local or Atlas) — optional for some tests if using memory server
+- Git (for repo workflow)
+- Windows commands shown where relevant
 
-## Testing Tools
+## Install (server/client)
+1. Clone or open repository at `d:\mern-test`.
+2. Install server deps:
+   cd d:\mern-test\server
+   npm install
+3. If a client exists:
+   cd d:\mern-test\client
+   npm install
 
-- Jest: JavaScript testing framework
-- React Testing Library: Testing utilities for React
-- Supertest: HTTP assertions for API testing
-- Cypress/Playwright: End-to-end testing framework
-- MongoDB Memory Server: In-memory MongoDB for testing
+## Environment
+Create a `.env` in `server/`:
+NODE_ENV=development
+PORT=3000
+MONGO_URI=<your_mongo_connection_string>
+JWT_SECRET=<your_jwt_secret>
 
-## Submission
+Adjust names to match your codebase.
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+## Useful scripts (example)
+Run from `server/` (adjust if your package.json differs):
+- npm run dev        — start server with nodemon (development)
+- npm start          — start production server
+- npm test           — run Jest tests
+- npm run coverage   — run tests and generate coverage report (html in server/coverage)
+- npm run lint       — run linters (if configured)
 
-1. Complete all required tests (unit, integration, and end-to-end)
-2. Achieve at least 70% code coverage for unit tests
-3. Document your testing strategy in the README.md
-4. Include screenshots of your test coverage reports
-5. Demonstrate debugging techniques in your code
+If client has scripts:
+- cd client && npm start
+
+## Run tests & open coverage (Windows)
+1. From `server/`:
+   npm test
+2. Generate coverage (if configured):
+   npm run coverage
+3. Open report (Windows):
+   start "" "server\coverage\lcov-report\index.html"
+
+Or open the file directly in your browser.
+
+## Testing guidance
+- Unit tests: isolate functions and components, mock external services
+- Integration tests: use Supertest against an Express app instance; spin up an in-memory MongoDB (mongodb-memory-server) for DB tests
+- E2E tests: use Cypress or Playwright to test critical user flows (login, CRUD)
+- Coverage: focus on edge cases and error handling paths to increase meaningful coverage
+
+## Debugging tips
+- Use console logs selectively and prefer structured logging (debug levels)
+- Reproduce failing tests locally and run Jest with `--runInBand` and `--detectOpenHandles`
+- For DB-related tests use mongodb-memory-server to avoid flakiness
+- Use VS Code breakpoints for server code; run `node --inspect-brk` or use the built-in debugger
+- For client UI issues, use React DevTools and Cypress interactive runner
+
+## Project structure (reference)
+- /client — React front-end (if present)
+  - src/components, src/tests
+  - cypress/ (E2E tests)
+- /server — Express API, tests, coverage
+  - src/controllers, src/models, src/routes, src/middleware
+  - tests/unit, tests/integration
+  - coverage/ (HTML reports)
+- jest.config.js, package.json at root or in each package as applicable
+
+## Submission checklist
+- Unit, integration, and E2E tests implemented
+- Unit test coverage ≥70%
+- Coverage HTML report included or generated at `server/coverage/lcov-report/index.html`
+- README documents testing strategy and how to run tests
+- Screenshots of coverage reports added to repository if required by assignment
+
+## Contributing
+- Fork → branch → commit → PR
+- Run tests and linters before pushing
+- Describe tests added or changed in PR description
 
 ## Resources
+- Jest: https://jestjs.io
+- React Testing Library: https://testing-library.com/docs/react-testing-library/intro/
+- Supertest: https://github.com/visionmedia/supertest
+- Cypress: https://docs.cypress.io/
+- mongodb-memory-server: https://github.com/nodkz/mongodb-memory-server
 
-- [Jest Documentation](https://jestjs.io/docs/getting-started)
-- [React Testing Library Documentation](https://testing-library.com/docs/react-testing-library/intro/)
-- [Supertest Documentation](https://github.com/visionmedia/supertest)
-- [Cypress Documentation](https://docs.cypress.io/)
-- [MongoDB Testing Best Practices](https://www.mongodb.com/blog/post/mongodb-testing-best-practices) 
+## License
+Specify project license (e.g., MIT). Add a LICENSE file if needed.
